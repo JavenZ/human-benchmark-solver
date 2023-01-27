@@ -14,7 +14,7 @@ def main():
 
     while True:
         # watch
-        sequence = watch_pattern()
+        sequence = watch_sequence()
 
         # click squares in sequence
         while sequence:
@@ -22,12 +22,11 @@ def main():
             square.click()
 
 
-def watch_pattern() -> list:
+def watch_sequence() -> list:
     sequence = []
     tol_start = time()
     squares = driver.find_element(By.CLASS_NAME, "squares")
 
-    print("start watch")
     while time() - tol_start < 3:
         active_squares = squares.find_elements(By.CLASS_NAME, "active")
         if active_squares:
@@ -39,7 +38,6 @@ def watch_pattern() -> list:
                 tol_start = time()
 
     sequence.reverse()
-    print("end watch")
     return sequence
 
 
